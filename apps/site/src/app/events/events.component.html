@@ -1,0 +1,22 @@
+<scully-content></scully-content>
+
+<ng-container *ngIf="event$ | async as event">
+  <header>
+    <h1>{{ event.title }}</h1>
+    <p>{{ event.description }}</p>
+  </header>
+
+  <section>
+    <article *ngFor="let talk of event.talks">
+      <h2>{{ talk.title }}</h2>
+      <p>{{ talk.abstract }}</p>
+
+      <figure style="width: 300px;">
+        <img [src]="talk.author.avatar" style="width: 100%;" />
+      </figure>
+      <p>{{ talk.author.name }}</p>
+      <p>{{ talk.author.company }}</p>
+      <p>{{ talk.author.bio }}</p>
+    </article>
+  </section>
+</ng-container>
