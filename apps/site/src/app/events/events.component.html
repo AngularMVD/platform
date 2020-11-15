@@ -1,22 +1,39 @@
 <scully-content></scully-content>
 
 <ng-container *ngIf="event$ | async as event">
-  <header>
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.description }}</p>
+  <header class="p-2 mt-2 text-center">
+    <h1 class="text-lg font-bold">{{ event.title }}</h1>
+    <p *ngFor="let p of event.description">{{ p }}</p>
   </header>
 
   <section>
-    <article *ngFor="let talk of event.talks">
-      <h2>{{ talk.title }}</h2>
-      <p>{{ talk.abstract }}</p>
+    <article
+      *ngFor="let talk of event.talks"
+      class="p-2 mt-2 border-t-2 border-black"
+    >
+      <h2 class="mt-2 text-lg font-bold text-center">{{ talk.title }}</h2>
+      <p
+        class="px-4 my-4 text-justify"
+        style="text-indent: 40px;"
+        *ngFor="let p of talk.abstract"
+      >
+        {{ p }}
+      </p>
 
-      <figure style="width: 300px;">
+      <figure class="w-56 mx-auto">
         <img [src]="talk.author.avatar" style="width: 100%;" />
       </figure>
-      <p>{{ talk.author.name }}</p>
-      <p>{{ talk.author.company }}</p>
-      <p>{{ talk.author.bio }}</p>
+      <p class="mt-2 text-lg font-bold text-center">{{ talk.author.name }}</p>
+      <p class="text-gray-700 text-center font-italic">
+        {{ talk.author.company }}
+      </p>
+      <p
+        class="px-4 my-2 text-justify"
+        style="text-indent: 40px;"
+        *ngFor="let p of talk.author.bio"
+      >
+        {{ p }}
+      </p>
     </article>
   </section>
 </ng-container>
