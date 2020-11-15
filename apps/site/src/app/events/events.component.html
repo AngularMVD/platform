@@ -1,0 +1,29 @@
+<scully-content></scully-content>
+
+<ng-container *ngIf="event$ | async as event">
+  <header>
+    <h1>{{ event.description }}</h1>
+    <p>
+      Mes a mes, los miembros del equipo de Angular MVD, nos esforzamos por
+      conseguir los mejores speakers.
+    </p>
+  </header>
+
+  <section>
+    <header>
+      <h2>Charlas</h2>
+    </header>
+
+    <article *ngFor="let talk of event.talks">
+      <h3>{{ talk.title }}</h3>
+      <p>{{ talk.abstract }}</p>
+
+      <figure style="width: 300px;">
+        <img [src]="talk.author.avatar" style="width: 100%;" />
+      </figure>
+      <p>{{ talk.author.name }}</p>
+      <p>{{ talk.author.company }}</p>
+      <p>{{ talk.author.bio }}</p>
+    </article>
+  </section>
+</ng-container>
