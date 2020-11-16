@@ -3,19 +3,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 
-import { EventsComponent } from './events.component';
+import { EventComponent } from './event.component';
 
 @NgModule({
-  declarations: [EventsComponent],
+  declarations: [EventComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
-        path: ':date',
-        component: EventsComponent,
+        path: '',
+        component: EventComponent,
       },
     ]),
     ScullyLibModule,
   ],
 })
-export class EventsModule {}
+export class EventModule {}

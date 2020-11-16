@@ -17,9 +17,9 @@ import { AppComponent } from './app.component';
             import('./home/home.module').then((m) => m.HomeModule),
         },
         {
-          path: 'events',
+          path: 'events/:date',
           loadChildren: () =>
-            import('./events/events.module').then((m) => m.EventsModule),
+            import('./event/event.module').then((m) => m.EventModule),
         },
       ],
       { initialNavigation: 'enabled' }

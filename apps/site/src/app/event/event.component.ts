@@ -7,13 +7,13 @@ import { Event } from '../core/classes/event.class';
 declare var ng: any;
 
 @Component({
-  selector: 'site-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss'],
+  selector: 'site-event',
+  templateUrl: './event.component.html',
+  styleUrls: ['./event.component.scss'],
   preserveWhitespaces: true,
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class EventsComponent {
+export class EventComponent {
   event$ = this.scully
     .getCurrent()
     .pipe(map((eventMarkdown) => Event.fromMarkdown(eventMarkdown)));
