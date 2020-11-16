@@ -15,5 +15,7 @@ export interface IEvent {
   title: string;
   description: string[];
   date: Date;
+  pastEvent: boolean;
+  youtubeUrl: string;
   talks: IEventTalk[];
 }

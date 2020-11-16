@@ -1,9 +1,52 @@
 <scully-content></scully-content>
 
 <ng-container *ngIf="event$ | async as event">
-  <header class="p-2 mt-2 text-center">
-    <h1 class="text-xl font-bold">{{ event.title }}</h1>
-    <p *ngFor="let p of event.description" class="text-gray-700">{{ p }}</p>
+  <header class="p-2 mt-2 flex flex-col md:flex-row text-center">
+    <div class="w-full block px-2 mt-4 md:w-2/5 md:px-8">
+      <h1>
+        <p class="text-4xl font-bold">
+          Angular <br />
+          Montevideo
+        </p>
+        <p class="text-xl font-bold mt-4">
+          {{ event.title }}
+        </p>
+      </h1>
+      <p *ngFor="let p of event.description" class="text-gray-700">
+        {{ p }}
+      </p>
+    </div>
+
+    <div
+      class="w-full block px-8 mt-4 md:w-3/5 md:px-16"
+      *ngIf="event.pastEvent"
+    >
+      <p>
+        Este evento ya ocurrió, pero no preocupés aún podes verlo.
+      </p>
+
+      <div class="relative h-0 mt-4" style="padding-bottom: 56.25%;">
+        <iframe
+          class="absolute top-0 left-0 w-full h-full"
+          frameborder="0"
+          allowfullscreen
+          [src]="event.youtubeUrl | safeUrl"
+        ></iframe>
+      </div>
+    </div>
+
+    <div
+      class="w-full block px-8 mt-4 md:w-3/5 md:px-16"
+      *ngIf="!event.pastEvent"
+    >
+      <p class="text-3xl">Faltan 2 días para el evento.</p>
+
+      <p>No te olvidés.</p>
+
+      <button class="px-4 py-2 mt-4 bg-red-700 text-white rounded-lg">
+        Ponelo en tu calendario
+      </button>
+    </div>
   </header>
 
   <section>

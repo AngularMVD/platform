@@ -43,6 +43,8 @@ export class Event implements IEvent {
     public title: string,
     public description: string[],
     public date: Date,
+    public pastEvent: boolean,
+    public youtubeUrl: string,
     public talks: IEventTalk[]
   ) {}
 
@@ -51,6 +53,8 @@ export class Event implements IEvent {
       markdown.title,
       markdown.description.split('\n'),
       new Date(markdown.date),
+      Date.parse(markdown.date) < Date.now(),
+      markdown.youtubeUrl,
       markdown.talks.map((talk: any) => EventTalk.fromMarkdown(talk))
     );
   }
