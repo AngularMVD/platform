@@ -71,11 +71,20 @@
       </div>
 
       <div class="w-full block md:w-2/5 md:mt-4">
-        <figure class="w-56 mx-auto">
-          <img [src]="talk.author.avatar" style="width: 100%;" />
+        <figure
+          class="mx-auto rounded-full overflow-hidden relative shadow-xl"
+          style="width: 10.5em; height: 10.5rem;"
+        >
+          <div class="w-full h-full bg-red-700 absolute z-0"></div>
+          <div class="w-40 h-40 rounded-full overflow-hidden absolute z-10">
+            <img
+              [src]="talk.author.avatar"
+              class="w-full h-full object-cover"
+            />
+          </div>
         </figure>
-        <p class="mt-2 text-lg font-bold text-center">{{ talk.author.name }}</p>
-        <p class="text-gray-700 text-center font-italic">
+        <p class="mt-4 text-lg font-bold text-center">{{ talk.author.name }}</p>
+        <p class="text-gray-700 italic text-center font-italic">
           {{ talk.author.company }}
         </p>
         <p
