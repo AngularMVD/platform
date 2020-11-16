@@ -45,6 +45,7 @@ export class Event implements IEvent {
     public date: Date,
     public pastEvent: boolean,
     public youtubeUrl: string,
+    public googleCalendarUrl: string,
     public talks: IEventTalk[]
   ) {}
 
@@ -55,6 +56,7 @@ export class Event implements IEvent {
       new Date(markdown.date),
       Date.parse(markdown.date) < Date.now(),
       markdown.youtubeUrl,
+      markdown.googleCalendarUrl,
       markdown.talks.map((talk: any) => EventTalk.fromMarkdown(talk))
     );
   }

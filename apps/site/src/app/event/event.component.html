@@ -41,11 +41,16 @@
     >
       <p class="text-3xl">Faltan 2 días para el evento.</p>
 
-      <p>No te olvidés.</p>
+      <p class="italic text-gray-700">No te olvidés.</p>
 
-      <button class="px-4 py-2 mt-4 bg-red-700 text-white rounded-lg">
-        Ponelo en tu calendario
-      </button>
+      <a
+        *ngIf="event.googleCalendarUrl"
+        class="px-4 py-2 block mt-4 bg-red-700 text-white rounded-lg"
+        target="_blank"
+        [href]="event.googleCalendarUrl"
+      >
+        Ponelo en Google Calendar
+      </a>
     </div>
   </header>
 

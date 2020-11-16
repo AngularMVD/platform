@@ -17,5 +17,6 @@ export interface IEvent {
   date: Date;
   pastEvent: boolean;
   youtubeUrl: string;
+  googleCalendarUrl: string;
   talks: IEventTalk[];
 }
