@@ -2,38 +2,42 @@
 
 <ng-container *ngIf="event$ | async as event">
   <header class="p-2 mt-2 text-center">
-    <h1 class="text-lg font-bold">{{ event.title }}</h1>
-    <p *ngFor="let p of event.description">{{ p }}</p>
+    <h1 class="text-xl font-bold">{{ event.title }}</h1>
+    <p *ngFor="let p of event.description" class="text-gray-700">{{ p }}</p>
   </header>
 
   <section>
     <article
       *ngFor="let talk of event.talks"
-      class="p-2 mt-2 border-t-2 border-black"
+      class="p-2 mt-2 border-t-2 border-black flex flex-col md:flex-row md:p-4"
     >
-      <h2 class="mt-2 text-lg font-bold text-center">{{ talk.title }}</h2>
-      <p
-        class="px-4 my-4 text-justify"
-        style="text-indent: 40px;"
-        *ngFor="let p of talk.abstract"
-      >
-        {{ p }}
-      </p>
+      <div class="w-full block md:w-3/5 md:mt-4">
+        <h2 class="mt-2 text-lg font-bold text-center">{{ talk.title }}</h2>
+        <p
+          class="px-4 my-4 text-justify"
+          style="text-indent: 40px;"
+          *ngFor="let p of talk.abstract"
+        >
+          {{ p }}
+        </p>
+      </div>
 
-      <figure class="w-56 mx-auto">
-        <img [src]="talk.author.avatar" style="width: 100%;" />
-      </figure>
-      <p class="mt-2 text-lg font-bold text-center">{{ talk.author.name }}</p>
-      <p class="text-gray-700 text-center font-italic">
-        {{ talk.author.company }}
-      </p>
-      <p
-        class="px-4 my-2 text-justify"
-        style="text-indent: 40px;"
-        *ngFor="let p of talk.author.bio"
-      >
-        {{ p }}
-      </p>
+      <div class="w-full block md:w-2/5 md:mt-4">
+        <figure class="w-56 mx-auto">
+          <img [src]="talk.author.avatar" style="width: 100%;" />
+        </figure>
+        <p class="mt-2 text-lg font-bold text-center">{{ talk.author.name }}</p>
+        <p class="text-gray-700 text-center font-italic">
+          {{ talk.author.company }}
+        </p>
+        <p
+          class="px-4 my-2 text-justify"
+          style="text-indent: 40px;"
+          *ngFor="let p of talk.author.bio"
+        >
+          {{ p }}
+        </p>
+      </div>
     </article>
   </section>
 </ng-container>
