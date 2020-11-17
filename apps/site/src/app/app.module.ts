@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 import { AppComponent } from './app.component';
-import { ScullyLibModule } from '@scullyio/ng-lib';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +17,9 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
             import('./home/home.module').then((m) => m.HomeModule),
         },
         {
-          path: 'events',
+          path: 'events/:date',
           loadChildren: () =>
-            import('./events/events.module').then((m) => m.EventsModule),
+            import('./event/event.module').then((m) => m.EventModule),
         },
       ],
       { initialNavigation: 'enabled' }
