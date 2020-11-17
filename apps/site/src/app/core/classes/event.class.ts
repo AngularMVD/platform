@@ -9,6 +9,8 @@ export class EventTalkAuthor implements IEventTalkAuthor {
     public name: string,
     public company: string,
     public avatar: string,
+    public twitter: string,
+    public github: string,
     public bio: string[]
   ) {}
 
@@ -17,6 +19,8 @@ export class EventTalkAuthor implements IEventTalkAuthor {
       markdown.name,
       markdown.company,
       markdown.avatar,
+      markdown.twitter,
+      markdown.github,
       markdown.bio.split('\n')
     );
   }

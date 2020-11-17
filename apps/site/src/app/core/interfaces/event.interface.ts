@@ -2,6 +2,8 @@ export interface IEventTalkAuthor {
   name: string;
   company: string;
   avatar: string;
+  twitter: string;
+  github: string;
   bio: string[];
 }
 

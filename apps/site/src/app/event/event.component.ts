@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
 
@@ -14,6 +15,8 @@ declare var ng: any;
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class EventComponent {
+  faTwitter = faTwitter;
+  faGithub = faGithub;
   event$ = this.scully
     .getCurrent()
     .pipe(map((eventMarkdown) => Event.fromMarkdown(eventMarkdown)));
