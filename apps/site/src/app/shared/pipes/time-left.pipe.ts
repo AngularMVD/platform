@@ -7,6 +7,7 @@ import { DateTime } from 'luxon';
 export class TimeLeftPipe implements PipeTransform {
   transform(value: Date) {
     const diff = DateTime.fromISO(value.toISOString()).diffNow([
+      'years',
       'months',
       'weeks',
       'days',
@@ -14,16 +15,18 @@ export class TimeLeftPipe implements PipeTransform {
       'minutes',
     ]);
 
-    if (diff.months) {
-      return `${diff.months} ${diff.months === 1 ? 'mes' : 'meses'}`;
-    } else if (diff.weeks) {
-      return `${diff.weeks} ${diff.weeks === 1 ? 'semana' : 'semanas'}`;
-    } else if (diff.days) {
-      return `${diff.days} ${diff.days === 1 ? 'día' : 'días'}`;
-    } else if (diff.hours) {
-      return `${diff.hours} ${diff.hours === 1 ? 'hora' : 'horas'}`;
-    } else if (diff.minutes) {
-      return `${diff.minutes} ${diff.minutes === 1 ? 'minuto' : 'minutos'}`;
+    if (diff.years && diff.years > 1) {
+      return `${diff.years} años`;
+    } else if (diff.months && diff.months > 1) {
+      return `${diff.months} meses`;
+    } else if (diff.weeks && diff.weeks > 1) {
+      return `${diff.weeks} semanas`;
+    } else if (diff.days && diff.days > 1) {
+      return `${diff.days} días`;
+    } else if (diff.hours && diff.hours > 1) {
+      return `${diff.hours} horas`;
+    } else if (diff.minutes && diff.minutes > 1) {
+      return `${diff.minutes} minutos`;
     } else {
       return 'unos segundos';
     }
