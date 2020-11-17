@@ -1,1 +1,80 @@
-<p>events works!</p>
+<header class="px-4 py-16">
+  <div style="max-width: 1100px;" class="text-center mx-auto">
+    <h1
+      class="text-6xl font-bold leading-none"
+      style="font-family: 'Open Sans Condensed';"
+    >
+      Angular <br />
+      Montevideo
+    </h1>
+    <p class="text-xl mt-4">
+      Encontrá la lista de todos los eventos
+    </p>
+  </div>
+</header>
+
+<section class="p-4">
+  <article
+    *ngFor="let event of events$ | async"
+    class="border-2 border-red-700 px-2 py-6 mb-4 shadow-xl mx-auto md:mb-8 md:shadow-2xl"
+    style="max-width: 800px;"
+  >
+    <h2
+      class="text-2xl font-bold text-center md:text-3xl"
+      style="font-family: 'Open Sans Condensed';"
+    >
+      {{ event.title }}
+    </h2>
+
+    <p *ngIf="event.pastEvent" class="mt-4 font-thin text-center md:text-lg">
+      Este evento <span class="font-bold text-red-700">ya ocurrió</span>, pero
+      no te preocupes aún podes verlo.
+    </p>
+
+    <p *ngIf="!event.pastEvent" class="mt-4 font-thin text-center md:text-lg">
+      Faltan
+      <span class="font-bold text-red-700">
+        {{ event.date | timeLeft }}
+      </span>
+      para el evento.
+    </p>
+
+    <p class="mb-4 font-thin text-center md:text-lg">
+      Ingresa a los
+      <a
+        [routerLink]="['/events', event.slug]"
+        class="cursor-pointer underline text-red-700 text-center"
+        [attr.aria-label]="'página del evento ' + event.title"
+      >
+        detalles del evento.
+      </a>
+    </p>
+
+    <div class="flex flex-wrap justify-center">
+      <div
+        *ngFor="let talk of event.talks"
+        class="flex items-center text-white bg-gradient-red rounded-full shadow-2xl p-1 mt-2 mx-2"
+        style="width: 240px;"
+      >
+        <figure
+          class="rounded-full overflow-hidden relative shadow-2xl flex justify-center items-center"
+          style="width: 3rem; height: 3rem;"
+        >
+          <div class="w-full h-full absolute z-0 bg-white"></div>
+          <div
+            class="rounded-full overflow-hidden absolute z-10"
+            style="width: 90%; height: 90%;"
+          >
+            <img
+              [src]="talk.author.avatar"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </figure>
+        <p class="m-2 truncate">{{ talk.author.name }}</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<site-footer></site-footer>
