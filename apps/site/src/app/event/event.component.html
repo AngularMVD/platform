@@ -1,18 +1,21 @@
 <scully-content></scully-content>
 
 <ng-container *ngIf="event$ | async as event">
-  <header class="p-2 mt-2 flex flex-col md:flex-row text-center">
+  <header class="px-2 py-16 mt-2 flex flex-col md:flex-row text-center">
     <div class="w-full block px-2 mt-4 md:w-2/5 md:px-8">
       <h1>
-        <p class="text-4xl font-bold">
+        <p
+          class="text-6xl font-bold leading-none"
+          style="font-family: 'Open Sans Condensed';"
+        >
           Angular <br />
           Montevideo
         </p>
-        <p class="text-xl font-bold mt-4">
+        <p class="text-2xl mt-4">
           {{ event.title }}
         </p>
       </h1>
-      <p *ngFor="let p of event.description" class="text-gray-700">
+      <p *ngFor="let p of event.description" class="text-gray-700 italic">
         {{ p }}
       </p>
     </div>
@@ -36,16 +39,19 @@
     </div>
 
     <div
-      class="w-full block px-8 mt-4 md:w-3/5 md:px-16"
+      class="w-full block px-8 mt-4 md:w-3/5 md:px-16 md:flex md:justify-center md:flex-col"
       *ngIf="!event.pastEvent"
     >
-      <p class="text-3xl">Faltan 2 días para el evento.</p>
+      <p class="text-3xl font-thin">
+        Faltan <span class="font-bold text-red-700">2 días</span> para el
+        evento.
+      </p>
 
       <p class="italic text-gray-700">No te olvidés.</p>
 
       <a
         *ngIf="event.googleCalendarUrl"
-        class="px-4 py-2 block mt-4 bg-red-700 text-white rounded-lg"
+        class="px-4 py-2 mt-4 inline-block bg-gradient-red text-white rounded-lg font-bold"
         target="_blank"
         [href]="event.googleCalendarUrl"
       >
@@ -60,9 +66,14 @@
       class="p-2 mt-2 border-t-2 border-black flex flex-col md:flex-row md:p-4"
     >
       <div class="w-full block md:w-3/5 md:mt-4">
-        <h2 class="mt-2 text-lg font-bold text-center">{{ talk.title }}</h2>
+        <h2
+          class="mt-2 text-4xl font-bold text-center"
+          style="font-family: 'Open Sans Condensed';"
+        >
+          {{ talk.title }}
+        </h2>
         <p
-          class="px-4 my-4 text-justify"
+          class="px-4 my-4 text-justify leading-loose"
           style="text-indent: 40px;"
           *ngFor="let p of talk.abstract"
         >
@@ -72,7 +83,7 @@
 
       <div class="w-full block md:w-2/5 md:mt-4">
         <figure
-          class="mx-auto rounded-full overflow-hidden relative shadow-xl"
+          class="mx-auto rounded-full overflow-hidden relative shadow-xl flex justify-center items-center"
           style="width: 10.5em; height: 10.5rem;"
         >
           <div class="w-full h-full absolute z-0 bg-gradient-red"></div>
@@ -83,7 +94,12 @@
             />
           </div>
         </figure>
-        <p class="mt-4 text-lg font-bold text-center">{{ talk.author.name }}</p>
+        <p
+          class="mt-4 text-2xl font-bold text-center"
+          style="font-family: 'Open Sans Condensed';"
+        >
+          {{ talk.author.name }}
+        </p>
         <p class="text-gray-700 italic text-center font-italic">
           {{ talk.author.company }}
         </p>
@@ -96,7 +112,7 @@
           </a>
         </div>
         <p
-          class="px-4 my-2 text-justify"
+          class="px-4 my-4 text-justify leading-loose"
           style="text-indent: 40px;"
           *ngFor="let p of talk.author.bio"
         >
