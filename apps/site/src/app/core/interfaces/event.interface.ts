@@ -10,6 +10,7 @@ export interface IEventTalkAuthor {
 export interface IEventTalk {
   title: string;
   abstract: string[];
+  duration: string;
   author: IEventTalkAuthor;
 }
 

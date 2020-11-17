@@ -30,6 +30,7 @@ export class EventTalk implements IEventTalk {
   constructor(
     public title: string,
     public abstract: string[],
+    public duration: string,
     public author: IEventTalkAuthor
   ) {}
 
@@ -37,6 +38,7 @@ export class EventTalk implements IEventTalk {
     return new EventTalk(
       markdown.title,
       markdown.abstract.split('\n'),
+      markdown.duration,
       EventTalkAuthor.fromMarkdown(markdown.author)
     );
   }
