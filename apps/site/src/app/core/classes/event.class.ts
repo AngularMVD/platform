@@ -55,6 +55,7 @@ export class EventSponsor implements IEventSponsor {
 
 export class Event implements IEvent {
   constructor(
+    public slug: string,
     public title: string,
     public description: string[],
     public date: Date,
@@ -67,6 +68,7 @@ export class Event implements IEvent {
 
   static fromMarkdown(markdown: any) {
     return new Event(
+      markdown.slug,
       markdown.title,
       markdown.description.split('\n'),
       new Date(markdown.date),
