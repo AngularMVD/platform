@@ -21,6 +21,7 @@ export interface IEventSponsor {
 }
 
 export interface IEvent {
+  slug: string;
   title: string;
   description: string[];
   date: Date;
