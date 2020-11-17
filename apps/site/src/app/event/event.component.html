@@ -1,10 +1,10 @@
 <scully-content></scully-content>
 
 <ng-container *ngIf="event$ | async as event">
-  <header class="px-2 py-16 mt-2">
+  <header class="px-4 py-16 md:p-0">
     <div
       style="max-width: 1100px;"
-      class="mx-auto flex flex-col md:flex-row text-center"
+      class="text-center mx-auto flex flex-col md:flex-row md:justify-center md:items-center md:h-screen"
     >
       <div class="w-full block px-2 mt-4 md:w-2/5 md:px-8">
         <h1>
@@ -19,19 +19,41 @@
             {{ event.title }}
           </p>
         </h1>
+
         <p *ngFor="let p of event.description" class="text-gray-700 italic">
           {{ p }}
         </p>
+
+        <ng-container *ngIf="!event.pastEvent">
+          <p class="mt-4 text-3xl font-thin">
+            Faltan <span class="font-bold text-red-700">2 días</span> para el
+            evento.
+          </p>
+
+          <p class="italic text-gray-700">No te olvidés.</p>
+
+          <a
+            *ngIf="event.googleCalendarUrl"
+            class="px-4 py-2 mt-4 inline-block bg-gradient-red text-white rounded-lg font-bold shadow-2xl"
+            target="_blank"
+            [href]="event.googleCalendarUrl"
+          >
+            Ponelo en Google Calendar
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="event.pastEvent">
+          <p class="mt-4 font-thin text-xl md:text-2xl">
+            Este evento <span class="font-bold text-red-700">ya ocurrió</span>,
+            pero no te preocupes aún podes verlo.
+          </p>
+        </ng-container>
       </div>
 
       <div
-        class="w-full block px-8 mt-4 md:w-3/5 md:px-16"
+        class="w-full block px-8 my-4 md:w-3/5 md:px-16"
         *ngIf="event.pastEvent"
       >
-        <p>
-          Este evento ya ocurrió, pero no preocupés aún podes verlo.
-        </p>
-
         <div class="relative h-0 mt-4" style="padding-bottom: 56.25%;">
           <iframe
             class="absolute top-0 left-0 w-full h-full"
@@ -41,37 +63,13 @@
           ></iframe>
         </div>
       </div>
-
-      <div
-        class="w-full block px-8 mt-4 md:w-3/5 md:px-16 md:flex md:justify-center md:flex-col"
-        *ngIf="!event.pastEvent"
-      >
-        <p class="text-3xl font-thin">
-          Faltan <span class="font-bold text-red-700">2 días</span> para el
-          evento.
-        </p>
-
-        <p class="italic text-gray-700">No te olvidés.</p>
-
-        <a
-          *ngIf="event.googleCalendarUrl"
-          class="px-4 py-2 mt-4 inline-block bg-gradient-red text-white rounded-lg font-bold shadow-2xl"
-          target="_blank"
-          [href]="event.googleCalendarUrl"
-        >
-          Ponelo en Google Calendar
-        </a>
-      </div>
     </div>
   </header>
 
   <section>
-    <article
-      *ngFor="let talk of event.talks"
-      class="mt-2 border-t-2 border-black"
-    >
+    <article *ngFor="let talk of event.talks" class="border-t-2 border-black">
       <div
-        class="p-2 mx-auto flex flex-col md:flex-row md:p-4"
+        class="px-2 py-8 mx-auto flex flex-col md:flex-row md:p-4"
         style="max-width: 1100px;"
       >
         <div class="w-full block md:w-3/5 md:mt-4">
