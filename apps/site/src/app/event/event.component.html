@@ -1,123 +1,133 @@
 <scully-content></scully-content>
 
 <ng-container *ngIf="event$ | async as event">
-  <header class="px-2 py-16 mt-2 flex flex-col md:flex-row text-center">
-    <div class="w-full block px-2 mt-4 md:w-2/5 md:px-8">
-      <h1>
-        <p
-          class="text-6xl font-bold leading-none"
-          style="font-family: 'Open Sans Condensed';"
-        >
-          Angular <br />
-          Montevideo
-        </p>
-        <p class="text-2xl mt-4">
-          {{ event.title }}
-        </p>
-      </h1>
-      <p *ngFor="let p of event.description" class="text-gray-700 italic">
-        {{ p }}
-      </p>
-    </div>
-
+  <header class="px-2 py-16 mt-2">
     <div
-      class="w-full block px-8 mt-4 md:w-3/5 md:px-16"
-      *ngIf="event.pastEvent"
+      style="max-width: 1100px;"
+      class="mx-auto flex flex-col md:flex-row text-center"
     >
-      <p>
-        Este evento ya ocurrió, pero no preocupés aún podes verlo.
-      </p>
-
-      <div class="relative h-0 mt-4" style="padding-bottom: 56.25%;">
-        <iframe
-          class="absolute top-0 left-0 w-full h-full"
-          frameborder="0"
-          allowfullscreen
-          [src]="event.youtubeUrl | safeUrl"
-        ></iframe>
+      <div class="w-full block px-2 mt-4 md:w-2/5 md:px-8">
+        <h1>
+          <p
+            class="text-6xl font-bold leading-none"
+            style="font-family: 'Open Sans Condensed';"
+          >
+            Angular <br />
+            Montevideo
+          </p>
+          <p class="text-2xl mt-4">
+            {{ event.title }}
+          </p>
+        </h1>
+        <p *ngFor="let p of event.description" class="text-gray-700 italic">
+          {{ p }}
+        </p>
       </div>
-    </div>
 
-    <div
-      class="w-full block px-8 mt-4 md:w-3/5 md:px-16 md:flex md:justify-center md:flex-col"
-      *ngIf="!event.pastEvent"
-    >
-      <p class="text-3xl font-thin">
-        Faltan <span class="font-bold text-red-700">2 días</span> para el
-        evento.
-      </p>
-
-      <p class="italic text-gray-700">No te olvidés.</p>
-
-      <a
-        *ngIf="event.googleCalendarUrl"
-        class="px-4 py-2 mt-4 inline-block bg-gradient-red text-white rounded-lg font-bold shadow-2xl"
-        target="_blank"
-        [href]="event.googleCalendarUrl"
+      <div
+        class="w-full block px-8 mt-4 md:w-3/5 md:px-16"
+        *ngIf="event.pastEvent"
       >
-        Ponelo en Google Calendar
-      </a>
+        <p>
+          Este evento ya ocurrió, pero no preocupés aún podes verlo.
+        </p>
+
+        <div class="relative h-0 mt-4" style="padding-bottom: 56.25%;">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            frameborder="0"
+            allowfullscreen
+            [src]="event.youtubeUrl | safeUrl"
+          ></iframe>
+        </div>
+      </div>
+
+      <div
+        class="w-full block px-8 mt-4 md:w-3/5 md:px-16 md:flex md:justify-center md:flex-col"
+        *ngIf="!event.pastEvent"
+      >
+        <p class="text-3xl font-thin">
+          Faltan <span class="font-bold text-red-700">2 días</span> para el
+          evento.
+        </p>
+
+        <p class="italic text-gray-700">No te olvidés.</p>
+
+        <a
+          *ngIf="event.googleCalendarUrl"
+          class="px-4 py-2 mt-4 inline-block bg-gradient-red text-white rounded-lg font-bold shadow-2xl"
+          target="_blank"
+          [href]="event.googleCalendarUrl"
+        >
+          Ponelo en Google Calendar
+        </a>
+      </div>
     </div>
   </header>
 
   <section>
     <article
       *ngFor="let talk of event.talks"
-      class="p-2 mt-2 border-t-2 border-black flex flex-col md:flex-row md:p-4"
+      class="mt-2 border-t-2 border-black"
     >
-      <div class="w-full block md:w-3/5 md:mt-4">
-        <h2
-          class="mt-2 text-4xl font-bold text-center"
-          style="font-family: 'Open Sans Condensed';"
-        >
-          {{ talk.title }}
-        </h2>
-        <p
-          class="px-4 my-4 text-justify leading-loose"
-          style="text-indent: 40px;"
-          *ngFor="let p of talk.abstract"
-        >
-          {{ p }}
-        </p>
-      </div>
-
-      <div class="w-full block md:w-2/5 md:mt-4">
-        <figure
-          class="mx-auto rounded-full overflow-hidden relative shadow-2xl flex justify-center items-center"
-          style="width: 10.5em; height: 10.5rem;"
-        >
-          <div class="w-full h-full absolute z-0 bg-gradient-red"></div>
-          <div class="w-40 h-40 rounded-full overflow-hidden absolute z-10">
-            <img
-              [src]="talk.author.avatar"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </figure>
-        <p
-          class="mt-4 text-2xl font-bold text-center"
-          style="font-family: 'Open Sans Condensed';"
-        >
-          {{ talk.author.name }}
-        </p>
-        <p class="text-gray-700 italic text-center font-italic">
-          {{ talk.author.company }}
-        </p>
-        <div class="flex justify-center mt-2">
-          <a class="mx-2" target="_blank" [href]="talk.author.twitter">
-            <fa-icon [icon]="faTwitter" size="lg"></fa-icon>
-          </a>
-          <a class="mx-2" target="_blank" [href]="talk.author.github">
-            <fa-icon [icon]="faGithub" size="lg"></fa-icon>
-          </a>
+      <div
+        class="p-2 mx-auto flex flex-col md:flex-row md:p-4"
+        style="max-width: 1100px;"
+      >
+        <div class="w-full block md:w-3/5 md:mt-4">
+          <h2
+            class="mt-2 text-4xl font-bold text-center"
+            style="font-family: 'Open Sans Condensed';"
+          >
+            {{ talk.title }}
+          </h2>
+          <p
+            class="px-4 my-4 text-justify leading-loose"
+            style="text-indent: 40px;"
+            *ngFor="let p of talk.abstract"
+          >
+            {{ p }}
+          </p>
         </div>
-        <p
-          class="px-4 my-4 text-justify leading-loose"
-          style="text-indent: 40px;"
-          *ngFor="let p of talk.author.bio"
-        >
-          {{ p }}
-        </p>
+
+        <div class="w-full block md:w-2/5 md:mt-4">
+          <figure
+            class="mx-auto rounded-full overflow-hidden relative shadow-2xl flex justify-center items-center"
+            style="width: 10.5em; height: 10.5rem;"
+          >
+            <div class="w-full h-full absolute z-0 bg-gradient-red"></div>
+            <div class="w-40 h-40 rounded-full overflow-hidden absolute z-10">
+              <img
+                [src]="talk.author.avatar"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </figure>
+          <p
+            class="mt-4 text-2xl font-bold text-center"
+            style="font-family: 'Open Sans Condensed';"
+          >
+            {{ talk.author.name }}
+          </p>
+          <p class="text-gray-700 italic text-center font-italic">
+            {{ talk.author.company }}
+          </p>
+          <div class="flex justify-center mt-2">
+            <a class="mx-2" target="_blank" [href]="talk.author.twitter">
+              <fa-icon [icon]="faTwitter" size="lg"></fa-icon>
+            </a>
+            <a class="mx-2" target="_blank" [href]="talk.author.github">
+              <fa-icon [icon]="faGithub" size="lg"></fa-icon>
+            </a>
+          </div>
+          <p
+            class="px-4 my-4 text-justify leading-loose"
+            style="text-indent: 40px;"
+            *ngFor="let p of talk.author.bio"
+          >
+            {{ p }}
+          </p>
+        </div>
       </div>
     </article>
   </section>
