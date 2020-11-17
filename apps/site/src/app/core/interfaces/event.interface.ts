@@ -14,6 +14,12 @@ export interface IEventTalk {
   author: IEventTalkAuthor;
 }
 
+export interface IEventSponsor {
+  title: string;
+  logo: string;
+  url: string;
+}
+
 export interface IEvent {
   title: string;
   description: string[];
@@ -22,4 +28,5 @@ export interface IEvent {
   youtubeUrl: string;
   googleCalendarUrl: string;
   talks: IEventTalk[];
+  sponsors: IEventSponsor[];
 }

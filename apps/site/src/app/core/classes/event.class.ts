@@ -1,5 +1,6 @@
 import {
   IEvent,
+  IEventSponsor,
   IEventTalk,
   IEventTalkAuthor,
 } from '../interfaces/event.interface';
@@ -44,6 +45,14 @@ export class EventTalk implements IEventTalk {
   }
 }
 
+export class EventSponsor implements IEventSponsor {
+  constructor(public title: string, public logo: string, public url: string) {}
+
+  static fromMarkdown(markdown: any) {
+    return new EventSponsor(markdown.title, markdown.logo, markdown.url);
+  }
+}
+
 export class Event implements IEvent {
   constructor(
     public title: string,
@@ -52,7 +61,8 @@ export class Event implements IEvent {
     public pastEvent: boolean,
     public youtubeUrl: string,
     public googleCalendarUrl: string,
-    public talks: IEventTalk[]
+    public talks: IEventTalk[],
+    public sponsors: IEventSponsor[]
   ) {}
 
   static fromMarkdown(markdown: any) {
@@ -63,7 +73,10 @@ export class Event implements IEvent {
       Date.parse(markdown.date) < Date.now(),
       markdown.youtubeUrl,
       markdown.googleCalendarUrl,
-      markdown.talks.map((talk: any) => EventTalk.fromMarkdown(talk))
+      markdown.talks.map((talk: any) => EventTalk.fromMarkdown(talk)),
+      markdown.sponsors.map((sponsor: any) =>
+        EventSponsor.fromMarkdown(sponsor)
+      )
     );
   }
 }
