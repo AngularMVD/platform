@@ -21,6 +21,11 @@ import { AppComponent } from './app.component';
           loadChildren: () =>
             import('./event/event.module').then((m) => m.EventModule),
         },
+        {
+          path: 'events',
+          loadChildren: () =>
+            import('./events/events.module').then((m) => m.EventsModule),
+        },
       ],
       { initialNavigation: 'enabled' }
     ),
