@@ -20,6 +20,7 @@ export class EventsComponent {
           return urlAsArray.length === 2 && urlAsArray[0] === 'events';
         })
         .map((availableRoute) => Event.fromMarkdown(availableRoute))
+        .sort((event1, event2) => event2.date.getTime() - event1.date.getTime())
     )
   );
 
