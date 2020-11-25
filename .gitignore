@@ -41,3 +41,4 @@ Thumbs.db
 .scully
 scully.log
 nx.json
+apps/**/scully-routes.json
